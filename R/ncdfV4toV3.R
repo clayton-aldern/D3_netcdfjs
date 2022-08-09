@@ -1,6 +1,5 @@
 library(here)
 library(ncdf4)
-library(RColorBrewer)
 library(OpenImageR)
 
 fname <- "cmorph_spi_gamma_90_day_latest.nc"
