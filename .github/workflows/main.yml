@@ -1,0 +1,42 @@
+# Get current global drought conditions
+name: droughtData
+
+# When
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron:  '*/5 * * * *'
+
+jobs:
+  autoscrape:
+    # Runs on
+    runs-on: macos-latest
+
+    # Load repo, install R
+    steps:
+    - uses: actions/checkout@master
+    - uses: r-lib/actions/setup-r@master
+
+    # Install libraries
+    - name: Install packages
+      run: |
+        R -e 'install.packages("here")'
+        R -e 'install.packages("ncdf4")'
+        R -e 'install.packages("OpenImageR")'
+   
+   # Run R script
+    - name: Get data
+      run: Rscript R/ncdfV4toV3.R
+
+    # Add data, commit, push
+    - name: Commit
+      run: |
+        git config --local user.name github-actions
+        git config --local user.email "actions@github.com"
+        git add spiDown.nc
+        git commit -am "gh-action run $(date)"
+        git push origin main
+      env:
+        REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+        username: github-actions
