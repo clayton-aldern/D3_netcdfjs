@@ -31,12 +31,10 @@ jobs:
 
     # Add data, commit, push
     - name: Commit
-      run: |
-        git config --local user.name github-actions
-        git config --local user.email "actions@github.com"
-        git add spiDown.nc
-        git commit -am "gh-action run $(date)"
-        git push origin main
-      env:
-        REPO_KEY: ${{secrets.GITHUB_TOKEN}}
-        username: github-actions
+      run: |-
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest data: ${timestamp}" || exit 0
+        git push
