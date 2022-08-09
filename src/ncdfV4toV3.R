@@ -1,10 +1,8 @@
+library(here)
 library(ncdf4)
 library(RColorBrewer)
 library(OpenImageR)
 
-setwd("~/Developer/gristy/drought-page")
-
-rm(list=ls())
 fname <- "cmorph_spi_gamma_90_day_latest.nc"
 url <- paste0("https://www.ncei.noaa.gov/pub/data/nidis/test/cmorph/",
               fname)
