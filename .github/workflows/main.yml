@@ -22,7 +22,9 @@ jobs:
     - name: Install packages
       run: |
         R -e 'install.packages("here")'
-        R -e 'install.packages("https://cran.r-project.org/src/contrib/Archive/ncdf4/ncdf4_1.19.tar.gz", repos=NULL, type="mac.binary")'
+        R -e 'install.packages("versions")'
+        R -e 'library(versions)'
+        R -e 'install.versions('ncdf4', '1.19')'
         R -e 'install.packages("OpenImageR")'
    
    # Run R script
