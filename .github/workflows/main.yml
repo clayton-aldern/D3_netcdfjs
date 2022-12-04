@@ -22,7 +22,7 @@ jobs:
     - name: Install packages
       run: |
         R -e 'install.packages("here")'
-        R -e 'install.packages("ncdf4")'
+        R -e 'install.packages("https://cran.r-project.org/src/contrib/Archive/ncdf4/ncdf4_1.19.tar.gz", repos=NULL, type="source")'
         R -e 'install.packages("OpenImageR")'
    
    # Run R script
