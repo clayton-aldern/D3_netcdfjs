@@ -23,8 +23,7 @@ jobs:
       run: |
         R -e 'install.packages("here")'
         R -e 'install.packages("versions")'
-        R -e 'library(versions)'
-        R -e 'install.versions('ncdf4', '1.19')'
+        R -e 'library(versions); install.versions('ncdf4', '1.19')'
         R -e 'install.packages("OpenImageR")'
    
    # Run R script
